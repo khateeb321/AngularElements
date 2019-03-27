@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Custom Button Test Page</title>
+  <script src="elements.js"></script>
+</head>
+
+<body>
+  <custom-button label="Fetch Data"></custom-button>
+
+  <div id="articleContainer"></div>
+
+  <script>
+    const button = document.querySelector('custom-button');
+    button.addEventListener('action', (event) => {
+      //console.log(event.detail);
+
+      let container = document.querySelector('#articleContainer');
+      let strArticles = "<p>From this page</p>";
+
+      for(let i = 0; i < event.detail.length; i++) {
+        let resObj = event.detail[i];
+
+        strArticles += '<article>' +
+                            '<hgroup>' +
+                                '<h1 class="name">' + resObj.id + '</h1>' +
+                                '<h2 class="email">' + resObj.title + '</h2>' +
+                                '<h3>' + resObj.body + '</h3>' +
+                            '</hgroup>' +
+                        '</article>';
+      }
+
+      // Inject the string html into the container parent element.
+      container.innerHTML = strArticles;
+
+    });
+
+
+
+  </script>
+</body>
+
+</html>
